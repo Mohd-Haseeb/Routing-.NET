@@ -132,4 +132,14 @@ s
 ```
 
 - Can we configure more than one folder? say mywebroot and myroot
+```cs
+    // in program.cs
+    app.UseStaticFiles(new StaticFileOptions() 
+    {
+        FileProvider = new PhysicalFileProvider(
+                   Path.Combine(builder.Environment.ContentRootPath, "another_folder_name")
+                )
+    });
+```
+
 
