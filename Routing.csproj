@@ -10,8 +10,23 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <None Remove="CustomConstraint\" />
+    <None Remove="myroot\" />
+    <None Remove="myroot\NET_Core_Logo.png" />
+    <None Remove="mywebroot\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomConstraint\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="myroot\" />
+    <Folder Include="mywebroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="myroot\NET_Core_Logo.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 </Project>

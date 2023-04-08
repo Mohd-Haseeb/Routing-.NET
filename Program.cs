@@ -1,15 +1,29 @@
 using System;
 using Microsoft.AspNetCore.Http;
 using Routing.CustomConstraint;
+using Microsoft.Extensions.FileProviders;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+{
+    WebRootPath = "myroot"
+});
 
 builder.Services.AddRouting(options =>
 {
     options.ConstraintMap.Add("months", typeof(MonthCustomConstraint));
 });
 
+
 var app = builder.Build();
+
+// to use static files (css, js, images) -> by default it takes wwwroot
+app.UseStaticFiles(); // works with 'myroot'
+
+app.UseStaticFiles(new StaticFileOptions() {
+    FileProvider = new PhysicalFileProvider(
+               Path.Combine(builder.Environment.ContentRootPath, "mywebroot")
+            )
+}); // works with 'mywebroot'
 
 
 // enabling routing

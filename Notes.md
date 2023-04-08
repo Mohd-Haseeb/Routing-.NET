@@ -112,3 +112,24 @@ s
 
     4. Carch-all parameters (**)
         - Ex: "a/b" is higher than "a/**"
+
+
+## WebRoot and Static files:
+
+- By default, ASP .NET doesn't load static files.
+
+- We have to use __UseStaticFiles__ middleware
+
+- The default WebRoot folder is __wwwroot__. We can configure it manually
+
+- If we want to make someother folder as default instead of __wwwroot__, then
+```cs
+    // in program.cs
+    var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+    {
+        WebRootPath = "folder_name"
+    });
+```
+
+- Can we configure more than one folder? say mywebroot and myroot
+
