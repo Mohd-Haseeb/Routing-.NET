@@ -96,3 +96,19 @@ s
     });
 
 ```
+
+- Endpoint Selection Order
+
+    - Top is highest precedence
+
+    1. URL template with more segments
+        - Ex: "a/b/c/d" is higher than "a/b/c"
+
+    2. URL template with literal text has more precedence than a parameter segment
+        - Ex: "a/b" is higher than "a/{parameter}"
+
+    3. URL template that has a parameter segment with constraints has more precedence than a parameter segment without constraints
+        - Ex: "a/b:int" is higher than "a/b"
+
+    4. Carch-all parameters (**)
+        - Ex: "a/b" is higher than "a/**"

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Http;
 using Routing.CustomConstraint;
 
@@ -70,6 +71,12 @@ app.UseEndpoints(endpoints =>
         string? month = Convert.ToString(context.Request.RouteValues["month"]);
 
         await context.Response.WriteAsync($"sales report - {month} - {year}");
+    });
+
+    // this has more preference than above url
+    endpoints.Map("sales-report/2023/may", async (context) =>
+    {
+        await context.Response.WriteAsync($"sales report - may- 2023s");
     });
 
 });
