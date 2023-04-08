@@ -34,3 +34,65 @@ s
     app.GetEndPoint()
 ```
 - If we call  GetEndPoint() before calling the `Routing`, it returns ___null___.
+
+# Route Parameters:
+
+- A route parameter can match with any value
+    - /emp/{name}
+
+- Route parameters are case insensitive
+
+- Route parameter with ___dafault value___
+    - A route parameter with default value matches with any value. It also matches with empty value.
+    - "{parameter=default_value}"
+
+
+- Route paramters with __optional parameters__
+    - "?" indicates an optional parameter
+    - "parameter?"
+
+
+- Route Constraints
+    - int
+    - bool
+    - datetime
+    - decimal
+    - long
+    - guid
+    - minlength(value)
+    - maxlength(value)
+    - length(min,max)
+    - length(value)
+    - min(value)
+    - max(value)
+    - range(min,max)
+    - alpha => matches with a string that contains only alphabets
+    - regex(expression)
+
+
+- __Custom Constraint__
+
+    - We can also have a custom constraint class
+
+```cs
+    public class ClassName : IRouteConstraint
+    {
+        public bool Match(
+            HttpContext? httpContext,
+            IRouter? route,
+            string routeKey,
+            RouteValueDictionary values,
+            RouteDirection routeDirection)
+        {
+            // logic
+             
+        }
+    }
+
+    // in program.cs
+    builder.Services.AddRouting(options =>
+    {
+        options.ConstraintMap.Add("months", typeof(MonthCustomConstraint));
+    });
+
+```
